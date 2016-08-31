@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :quarterly_message do
+    title "MyString"
+    body "MyText"
+  end
   sequence(:slack_username) { |n| "testusername#{n}" }
   sequence(:slack_user_id) { |n| "ID123#{n}" }
 

@@ -1,0 +1,9 @@
+<%= simple_form_for @quarterly_message do |form| %>
+  <%= render 'shared/message_title_body', locals:{form: form} %>
+  <div class="quarterly-message-fields">
+    This message will be sent to all employees quarterly
+  </div>
+  <%= form.input :tag_list, label: "Tags", hint: "Separate tags with commas to enter multiple tags at once.", input_html: {value: @scheduled_message.tag_list.to_s} %>
+  <%= form.button :submit %>
+<% end %>
+

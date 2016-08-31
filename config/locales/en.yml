@@ -68,3 +68,11 @@ en:
     users_controller:
       notices:
         update: "User updated successfully"
+    quarterly_messages_controller:
+      notices:
+        create: "Quarterly Message created successfully"
+        update: "Quarterly Message updated successfully"
+        destroy: "You deleted %{quarterly_message_title}"
+      errors:
+        create: "Could not create quarterly messsage"
+        update: "Could not update quarterly messsage"

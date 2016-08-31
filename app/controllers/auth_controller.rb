@@ -3,7 +3,7 @@ class AuthController < ApplicationController
 
   def oauth_callback
     if team_member?
-      user = User.find_or_create_by(email: auth_email)
+      user = User.find_or_create_by(auth_email)
       sign_in(user)
       flash[:success] = I18n.t('controllers.auth_controller.successes.oauth_callback')
       redirect_to root_path

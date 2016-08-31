@@ -1,5 +1,6 @@
 class ScheduledMessagesController < ApplicationController
   before_action :current_user_admin, only: [:new, :create, :edit, :update]
+  before_action :find_scheduled_message, only: [:edit, :update, :destroy]
 
   def new
     @scheduled_message = ScheduledMessage.new
@@ -25,12 +26,9 @@ class ScheduledMessagesController < ApplicationController
   end
 
   def edit
-    @scheduled_message = ScheduledMessage.find(params[:id])
   end
 
   def update
-    @scheduled_message = ScheduledMessage.find(params[:id])
-
     if @scheduled_message.update(scheduled_message_params)
       flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.update')
       redirect_to scheduled_messages_path
@@ -41,14 +39,16 @@ class ScheduledMessagesController < ApplicationController
   end
 
   def destroy
-    scheduled_message = ScheduledMessage.find(params[:id])
-    scheduled_message.destroy
-
-    flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.destroy', scheduled_message_title: scheduled_message.title)
+    @scheduled_message.destroy
+    flash[:notice] = I18n.t('controllers.scheduled_messages_controller.notices.destroy', scheduled_message_title: @scheduled_message.title)
     redirect_to scheduled_messages_path
   end
 
   private
+
+  def find_scheduled_message
+    @scheduled_message = ScheduledMessage.find(params[:id])
+  end
 
   def scheduled_message_params
     params.
